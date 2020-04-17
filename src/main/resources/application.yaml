@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: new loan quote
+
+logging:
+  level:
+    org.springframework.web.filter.CommonsRequestLoggingFilter:  DEBUG
+
+server:
+  port: 8080
+  servlet:
+    context-path: /

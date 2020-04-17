@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Calculator
+  description: back-end calculator api
+  contact:
+    name: Aymen Naghmouchi
+    email: aymenn@outlook.it
+    url: http://aymen94.github.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+paths:
+  "/loanQuotes/Calculator":
+    post:
+      description: The loan quote calculator is an example application that demonstrates how to create a rate
+        calculation system allowing prospective borrowers to obtain a quote from a pool of lenders for 36 month loans.
+      operationId: calculator
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/loanDataDTO'
+      responses:
+        '200':
+          description: result of expression
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/resultDTO'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+
+components:
+  schemas:
+    loanDataDTO:
+      type: object
+      properties:
+        loanAmount:
+          type: number
+        file:
+          type: string
+          format: binary
+      required:
+        - loanAmount
+        - file
+    resultDTO:
+      type: object
+      properties:
+        requestedAmount:
+          type: number
+        rate:
+          type: number
+        monthlyRepayment:
+          type: number
+        totalRepayment:
+          type: number
+    error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

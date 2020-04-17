@@ -1,0 +1,12 @@
+{
+  "apiPackage": "xyz.aymen.newloanquote.api",
+  "modelPackage": "xyz.aymen.newloanquote.model",
+  "invokerPackage": "xyz.aymen.newloanquote.config",
+  "groupId": "xyz.aymen.newloanquote",
+  "artifactId": "new-loan-quote",
+  "library": "spring-boot",
+  "serializableModel": true,
+  "java8": true,
+  "delegatePattern": true,
+  "dateLibrary": "java8"
+}
