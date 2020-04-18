@@ -11,7 +11,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 paths:
-  "/loanQuotes/Calculator":
+  '/loanQuotes/Calculator':
     post:
       description: The loan quote calculator is an example application that demonstrates how to create a rate
         calculation system allowing prospective borrowers to obtain a quote from a pool of lenders for 36 month loans.
@@ -28,12 +28,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/resultDTO'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
+        '412':
+          description: Insufficient Lenders
 
 components:
   schemas:
@@ -59,14 +55,3 @@ components:
           type: number
         totalRepayment:
           type: number
-    error:
-      type: object
-      required:
-        - code
-        - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string

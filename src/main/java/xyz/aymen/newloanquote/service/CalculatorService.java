@@ -14,10 +14,14 @@ import java.util.List;
 @Service
 public class CalculatorService {
 
-    public ResultDTO calculate(MultipartFile data, BigDecimal loanAmount) throws InsufficientLendersException, IOException {
-        List<Lender> lenderList = FileUtils.convertFileToModel(data.getBytes());
-        LoanQuoteCalculator loanQuoteCalculator = new LoanQuoteCalculator(lenderList);
-        return loanQuoteCalculator.getQuote(loanAmount);
+    public ResultDTO calculate(MultipartFile data, BigDecimal loanAmount) throws InsufficientLendersException {
+        try {
+            List<Lender> lenderList = FileUtils.convertFileToModel(data.getBytes());
+            LoanQuoteCalculator loanQuoteCalculator = new LoanQuoteCalculator(lenderList);
+            return loanQuoteCalculator.getQuote(loanAmount);
+        } catch (IOException e) {
+            return null;
+        }
     }
 
 }
