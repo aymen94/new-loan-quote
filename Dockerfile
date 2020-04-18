@@ -10,6 +10,6 @@ COPY src ./src
 RUN mvn -B clean package
 
 FROM ${RUNTIME_IMAGE}
-COPY --from=build /app/target/new-loan-quote-*.jar /app/standalone.jar
+COPY --from=build ./target/new-loan-quote-*.jar ./app/standalone.jar
 
 CMD ["/usr/bin/java", "-jar", "/app/standalone.jar"]
